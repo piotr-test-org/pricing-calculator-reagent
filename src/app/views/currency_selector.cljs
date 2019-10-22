@@ -7,5 +7,5 @@
     [:label "Currency"]
     [:> Select {:value (:currency @app-state)
                 :on-change #(set-currency (.. % -target -value))}
-      [:option "chf"]
-      [:option "eur"]]])
+      [:option :chf]
+      [:option :eur]]])
