@@ -1,11 +1,9 @@
 (ns app.main
   (:require
     [app.data :as data]
+    [app.views.app :refer [app]]
     [reagent.core :as r]))
 
-(def app
-  [:div
-   [:h1 "Price Calculator"]])
 
 (defn main! []
   (println "[main]: Initializing app")
