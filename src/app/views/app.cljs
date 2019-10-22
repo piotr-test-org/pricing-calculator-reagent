@@ -1,7 +1,16 @@
 (ns app.views.app
-  (:require [app.state :refer [app-state]]))
+  (:require [app.state :refer [app-state]]
+            ["@smooth-ui/core-sc" :refer [Normalize]]))
+
+(defn header []
+  [:h1 "Price Calculator"])
+
+(defn body []
+  [:p "body"])
 
 (defn app []
-  [:div
-   [:h1 "Price Calculator"]
-   [:p (str @app-state)]])
+  [:<>
+    [:> Normalize]
+    [:<>
+      [header]
+      [body]]])

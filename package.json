@@ -9,9 +9,13 @@
   "dependencies": {
     "create-react-class": "^15.6.3",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "@smooth-ui/core-sc": "9.0.2",
+    "styled-components": "^4.1.2"
   },
   "devDependencies": {
+    "react-flip-move": "^3.0.2",
+    "react-highlight.js": "^1.0.7",
     "shadow-cljs": "^2.6.10"
   },
   "author": "Piotr Roterski",
