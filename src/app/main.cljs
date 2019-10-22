@@ -5,7 +5,7 @@
     [reagent.core :as r]))
 
 (defn ^:dev/after-load start []
-  (r/render-component app
+  (r/render-component [app]
                       (.getElementById js/document "app")))
 
 (defn main! []

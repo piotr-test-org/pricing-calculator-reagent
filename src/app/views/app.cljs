@@ -1,5 +1,7 @@
-(ns app.views.app)
+(ns app.views.app
+  (:require [app.state :refer [app-state]]))
 
-(def app
+(defn app []
   [:div
-   [:h1 "Price Calculator"]])
+   [:h1 "Price Calculator"]
+   [:p (str @app-state)]])
