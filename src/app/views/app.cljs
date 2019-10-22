@@ -1,12 +1,13 @@
 (ns app.views.app
-  (:require [app.state :refer [app-state]]
-            ["@smooth-ui/core-sc" :refer [Normalize]]))
+  (:require [app.views.currency-selector :refer [currency-selector]]
+            ["@smooth-ui/core-sc" :refer [Normalize Box]]))
 
 (defn header []
   [:h1 "Price Calculator"])
 
 (defn body []
-  [:p "body"])
+  [:> Box
+   [currency-selector]])
 
 (defn app []
   [:<>
