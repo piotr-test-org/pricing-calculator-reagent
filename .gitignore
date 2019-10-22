@@ -1,4 +1,5 @@
 .idea
 .shadow-cljs
+node_modules
 public/js
 package-lock.json
