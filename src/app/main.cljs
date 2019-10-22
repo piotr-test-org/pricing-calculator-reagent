@@ -13,6 +13,7 @@
 
 (defn fetch-data [source]
   (let [url (source urls)]
+    (println (str "Fetching data from " url))
     (go (let [response (<! (http/get url {:with-credentials? false}))]
           (swap! app-state assoc-in [:data source] (:body response))))))
 
@@ -21,7 +22,8 @@
    [:h1 "Price Calculator"]])
 
 (defn main! []
-  (println "[main]: hello world!")
+  (println "[main]: Initializing app")
+  (doall (map fetch-data (keys urls)))
   (r/render-component app
                       (.getElementById js/document "app")))
 
