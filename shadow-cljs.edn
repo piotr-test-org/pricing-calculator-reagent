@@ -1,5 +1,6 @@
 {:source-paths ["src"]
- :dependencies [[reagent "0.8.1"]]
+ :dependencies [[reagent "0.8.1"]
+                [cljs-http "0.1.46"]]
  :dev-http {8080 "public/"}
  :nrepl {:port 9000}
  :builds {:app {:target :browser
