@@ -1,7 +1,7 @@
 (ns app.views.app
-  (:require [app.views.currency-selector :refer [currency-selector]]
-            [app.views.product-list :refer [product-list]]
-            [app.views.price-display :refer [price-display]]
+  (:require [app.currency.views.currency-selector :refer [currency-selector]]
+            [app.products.views.product-list :refer [product-list]]
+            [app.prices.views.price-display :refer [price-display]]
             ["@smooth-ui/core-sc" :refer [Normalize Box]]))
 
 (defn header []

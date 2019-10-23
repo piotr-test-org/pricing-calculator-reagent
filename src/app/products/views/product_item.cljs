@@ -1,6 +1,7 @@
-(ns app.views.product-item
-  (:require [app.state :refer [instances licenses remove-product update-product product-price]]
-            [app.views.price-display :refer [formatted-price]]
+(ns app.products.views.product-item
+  (:require [app.prices.queries :refer [product-price formatted-price]]
+            [app.products.queries :refer [instances licenses]]
+            [app.products.mutations :refer [remove-product update-product]]
             ["@smooth-ui/core-sc" :refer [Box Input Select Option Button]]))
 
 (defn product-item [{:keys [id instance license volume_data] :as product}]

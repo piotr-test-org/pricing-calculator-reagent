@@ -1,11 +1,12 @@
-(ns app.views.currency-selector
-  (:require [app.state :refer [app-state set-currency]]
+(ns app.currency.views.currency-selector
+  (:require [app.currency.queries :refer [currency]]
+            [app.currency.mutations :refer [set-currency]]
             ["@smooth-ui/core-sc" :refer [Box Select]]))
 
 (defn currency-selector []
   [:> Box
     [:label "Currency"]
-    [:> Select {:value (:currency @app-state)
+    [:> Select {:value (currency)
                 :on-change #(set-currency (.. % -target -value))}
       [:option :chf]
       [:option :eur]]])
