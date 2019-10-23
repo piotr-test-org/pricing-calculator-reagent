@@ -9,11 +9,11 @@
                                           :volume_data 100}
                                        2 {:id 2
                                           :instance :running_gpu_medium
-                                          :license nil
+                                          :license :none
                                           :volume_data 0}
                                        3 {:id 3
                                           :instance :running_medium
-                                          :license nil
+                                          :license :none
                                           :volume_data 200}}}))
 
 (defn set-currency [currency]
@@ -61,4 +61,32 @@
   (swap! app-state update-in [:products] dissoc id))
 
 (defn update-product [id attribute value]
-  (swap! app-state assoc-in [:products id attribute] (keyword value)))
+  (swap! app-state assoc-in [:products id attribute] value))
+
+(defn instance-price [instance]
+  (case instance
+    :none 0
+    (-> (data :opencompute)
+        instance
+        js/parseFloat)))
+
+(defn license-price [license]
+  (case license
+    :none 0
+    (-> (data :licenses)
+        license
+        js/parseFloat)))
+
+(defn storage-price [volume]
+  (-> (data :sos)
+      :storage_volume
+      js/parseFloat
+      (* volume)))
+
+(defn product-price [{:keys [instance license volume_data]}]
+  (+ (instance-price instance) (license-price license) (storage-price volume_data)))
+
+(defn total-price []
+  (->> (products)
+       (map product-price)
+       (reduce + 0)))
