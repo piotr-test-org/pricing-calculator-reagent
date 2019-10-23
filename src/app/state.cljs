@@ -15,6 +15,4 @@
                                           :license :none
                                           :volume_data 200}}}))
 
-(defn data [source]
-  (get-in @app-state [:data source (currency)]))
 

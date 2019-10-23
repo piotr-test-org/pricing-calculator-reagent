@@ -1,23 +1,23 @@
 (ns app.prices.queries
-  (:require [app.state :refer [data]]
+  (:require [app.currency.queries :refer [currency data-in-currency]]
             [app.products.queries :refer [products]]))
 
 (defn instance-price [instance]
   (case instance
     :none 0
-    (-> (data :opencompute)
+    (-> (data-in-currency :opencompute)
         instance
         js/parseFloat)))
 
 (defn license-price [license]
   (case license
     :none 0
-    (-> (data :licenses)
+    (-> (data-in-currency :licenses)
         license
         js/parseFloat)))
 
 (defn storage-price [volume]
-  (-> (data :sos)
+  (-> (data-in-currency :sos)
       :storage_volume
       js/parseFloat
       (* volume)))

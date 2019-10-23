@@ -1,5 +1,6 @@
 (ns app.products.queries
-  (:require [app.state :refer [app-state data]]
+  (:require [app.state :refer [app-state]]
+            [app.currency.queries :refer [data-in-currency]]
             [clojure.string :as str]))
 
 (defn products []
@@ -9,7 +10,7 @@
 
 (defn instances []
       (->> :opencompute
-           data
+           data-in-currency
            vec
            (filter (fn [[key val]] (-> key
                                        str
@@ -25,4 +26,4 @@
            (cons ["-" :none])))
 
 (defn licenses []
-      (cons [:none "0.0"] (vec (data :licenses))))
+      (cons [:none "0.0"] (vec (data-in-currency :licenses))))
