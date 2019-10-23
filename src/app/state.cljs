@@ -1,5 +1,6 @@
 (ns app.state
-  (:require [reagent.core :as r]))
+  (:require [reagent.core :as r]
+            [clojure.string :as str]))
 
 (defonce app-state (r/atom {:currency :eur
                             :products {1 {:id 1
@@ -9,7 +10,7 @@
                                        2 {:id 2
                                           :instance :running_gpu_medium
                                           :license nil
-                                          :volume_data nil}
+                                          :volume_data 0}
                                        3 {:id 3
                                           :instance :running_medium
                                           :license nil
@@ -29,12 +30,35 @@
 (defn data [source]
   (get-in @app-state [:data source (currency)]))
 
+(defn instances []
+  (->> :opencompute
+       data
+       vec
+       (filter (fn [[key val]] (-> key
+                                   str
+                                   (str/split #"_")
+                                   first
+                                   (= ":running"))))
+       (map (fn [[key val]] (let [name (-> key
+                                           str
+                                           (str/split #"_")
+                                           rest
+                                           vec)]
+                                 [(str/join " " name) key])))
+       (cons ["-" :none])))
+
+(defn licenses []
+  (cons [:none "0.0"] (vec (data :licenses))))
+
 (defn add-product []
   (let [id (random-uuid)]
     (swap! app-state assoc-in [:products id] {:id id
-                                              :instance nil
-                                              :license nil
-                                              :volume_data nil})))
+                                              :instance :none
+                                              :license :none
+                                              :volume_data 0})))
 
 (defn remove-product [id]
   (swap! app-state update-in [:products] dissoc id))
+
+(defn update-product [id attribute value]
+  (swap! app-state assoc-in [:products id attribute] (keyword value)))
