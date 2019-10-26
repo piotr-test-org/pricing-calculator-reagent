@@ -24,7 +24,7 @@
                                            rest
                                            vec)]
                                  [(str/join " " name) key])))
-       (cons ["-" :none])))
+       (cons [:none :none])))
 
 (defn licenses []
   (cons [:none "0.0"] (vec (data-in-currency :licenses))))
