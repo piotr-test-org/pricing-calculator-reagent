@@ -10,7 +10,7 @@ npm install
 ```
 npx shadow-cljs watch app
 ```
-
+Go to http://localhost:8080
 ## Features
 - adding product
 - editing product
