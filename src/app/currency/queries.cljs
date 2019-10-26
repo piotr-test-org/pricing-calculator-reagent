@@ -5,4 +5,4 @@
   (:currency @app-state))
 
 (defn data-in-currency [source]
-      (get-in @app-state [:data source (currency)]))
+  (get-in @app-state [:data source (currency)]))
