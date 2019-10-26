@@ -31,3 +31,7 @@
 (defn update-product [id attribute value]
   (swap! app-state assoc-in [:products id attribute] value)
   (store-in-url))
+
+(defn clear-products []
+  (swap! app-state assoc :products {})
+  (set! js/window.location.hash ""))
