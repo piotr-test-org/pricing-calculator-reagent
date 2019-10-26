@@ -6,7 +6,8 @@
 (defn products []
   (-> @app-state
       :products
-      vals))
+      vals
+      (or [])))
 
 (defn instances []
       (->> :opencompute

@@ -8,11 +8,12 @@
   (set! js/window.location.hash (encodeString (products))))
 
 (defn restore-from-url []
-  (let [products-from-url (->> (subs js/window.location.hash 1)
+  (let [url-hash (subs js/window.location.hash 1)
+        products-from-url (->> url-hash
                                decodeString
                                cljs.reader/read-string
                                (reduce (fn [acc p] (assoc acc (:id p) p)) {}))]
-    (when-not (empty? products-from-url)
+    (when-not (empty? url-hash)
       (swap! app-state assoc :products products-from-url))))
 
 (defn add-product []
