@@ -20,3 +20,4 @@ Go to http://localhost:8080
 - calculating total price
 - currency selector
 - persisting product list in url hash
+
